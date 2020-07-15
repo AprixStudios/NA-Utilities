@@ -9,11 +9,9 @@ const app = express();
 
 app.listen(9000, () => console.log(`Webhook running!`));
 
-app.get('/aprixia/na-utilities/webhook', (req,res) => {
+app.post('/aprixia/na-utilities/webhook', (req,res) => {
     if (req.query.secret === webhookSecret) {
         gad.deploy();
-    } else {
-        res.send(`no1`);
     }
 });
 
