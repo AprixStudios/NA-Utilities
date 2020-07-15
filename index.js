@@ -12,7 +12,6 @@ app.listen(9000, () => console.log(`Webhook running!`));
 app.post('/aprixia/na-utilities/webhook', (req,res) => {
     if (req.query.secret === webhookSecret) {
         gad.deploy();
-        res.sendStatus(401);
         console.log('c');
     }
 });
