@@ -26,7 +26,7 @@ module.exports = {
             let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nMember is not defined.`).addField(`Usage`, prefix+this.name+' '+this.usage)
             return message.channel.send(embed);
         }
-        var member = client.guilds.get('713446315496964176').member(user);
+        var member = client.guilds.cache.get('713446315496964176').member(user);
         await args.shift();
         var time = await setTime(args[0]);
         if (time !== null) await args.shift();
