@@ -13,7 +13,7 @@ app.post('/aprixia/na-utilities/webhook', (req,res) => {
     if (req.query.secret === webhookSecret) {
         gad.deploy();
         res.sendStatus(401);
-        console.log('a');
+        console.log('c');
     }
 });
 
