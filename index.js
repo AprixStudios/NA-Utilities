@@ -13,7 +13,7 @@ app.get('/aprixia/na-utilities/webhook', (req,res) => {
     if (req.query.secret === webhookSecret) {
         gad.deploy();
     } else {
-        res.send(`no`);
+        res.send(`no1`);
     }
 });
 
