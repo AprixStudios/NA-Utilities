@@ -36,7 +36,7 @@ module.exports = {
         }
         getDB(member.id).then(async res => {
             if (!res) res = await createDB(member.id);
-            let {cases} = require('cases.json');
+            let {cases} = require('../cases.json');
             cases++;
             res.punishments.bans.push({
                 moderator: message.author.id,
