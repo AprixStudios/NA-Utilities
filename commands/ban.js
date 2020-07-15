@@ -35,7 +35,7 @@ module.exports = {
             let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nReason is not defined.`).addField(`Usage`, prefix+this.name+' '+this.usage)
             return message.channel.send(embed);
         }
-        getDB(member.id).then(async res => {
+        getDB(member.user.id).then(async res => {
             if (!res) res = await createDB(member.id);
             let {cases} = require('../cases.json');
             cases++;
