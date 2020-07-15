@@ -1,8 +1,21 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({disableMentions: "all"});
-const { prefix, token, dbpass } = require('./config.json');
+const { prefix, token, dbpass, webhookSecret} = require('./config.json');
 const fs = require('fs-extra');
 const mongoose = require('mongoose');
+const gad = require('git-auto-deploy');
+const express = require('express');
+const app = express();
+
+app.listen(9000, () => console.log(`Webhook running!`));
+
+app.get('/aprixia/na-utilities/webhook', (req,res) => {
+    if (req.query.secret === webhookSecret) {
+        gad.deploy();
+    } else {
+        res.send(`no`);
+    }
+});
 
 mongoose.connect(`mongodb+srv://AltriDBs:${dbpass}@altricatiadb-u2sqy.mongodb.net/nautils?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
