@@ -34,22 +34,22 @@ module.exports = {
         }
         getDB(member.user.id).then(async res => {
             if (!res) res = await createDB(member.id);
-            let {cases} = require('../cases.json');
-            cases++;
+            let cases = require('../cases.json');
+            cases.cases++;
             res.punishments.bans.push({
                 moderator: message.author.id,
                 modTag: message.author.tag,
                 time: time,
                 reason: reason,
                 happenedAt: Date.now(),
-                caseId: cases
+                caseId: cases.cases
             });
             saveDB(res).then(() => {
                 writeJson(`../cases.json`, cases);
 
                 let dmEmbed = new MessageEmbed()
                 .setColor("RANDOM")
-                .setTitle(`You've been banned from ${message.guild.name} #${cases}`)
+                .setTitle(`You've been banned from ${message.guild.name} #${cases.cases}`)
                 .setDescription(`You've been banned from ${message.guild.name}\nHere are some details to help you catch up on what happened.`)
                 .addField(`Moderator`, `${message.author.tag} (${message.author.id})`, true)
                 .addField(`Reason`, `${reason}`, true)
@@ -60,7 +60,7 @@ module.exports = {
 
                 let embed = new MessageEmbed()
                 .setColor("RANDOM")
-                .setTitle(`Member Banned #${cases}`)
+                .setTitle(`Member Banned #${cases.cases}`)
                 .addField(`Member`, `${member.user.tag} (${member.user.id})`)
                 .addField(`Moderator`, `${message.author.tag} (${message.author.id})`, true)
                 .addField(`Reason`, `${reason}`, true)
