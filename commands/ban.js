@@ -65,7 +65,7 @@ module.exports = {
                 .addField(`Moderator`, `${message.author.tag} (${message.author.id})`, true)
                 .addField(`Reason`, `${reason}`, true)
                 .addField(`Temporary?`, `${time !== null ? "Yes" : "No"}`)
-                .setFooter(`Expire at: ${time !== null ? "Never" : `${new Date(time).toString().slice(0,-40)} | Duration: ${getTime(time)}`}`)
+                .setFooter(`Expire at: ${time === null ? "Never" : `${new Date(time).toString().slice(0,-40)} | Duration: ${getTime(time)}`}`)
             
                 message.channel.send(embed).catch(err => err);
 
