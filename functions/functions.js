@@ -96,7 +96,7 @@ async function getTime(s) {
 async function setTime(time) {
     let times = ['s', 'm', 'h', 'd'];
     return new Promise(resolve => {
-        if (!times.some(letter => time.toLowerCase().endsWith(letter)) || isNaN(time.slice(0,-1))) {
+        if (!time || !times.some(letter => time.toLowerCase().endsWith(letter)) || isNaN(time.slice(0,-1))) {
             return resolve(null);
         } else if (times.some(letter => time.toLowerCase().endsWith(letter)) && !isNaN(time.slice(0,-1))) {
             let timeInd;
