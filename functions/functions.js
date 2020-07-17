@@ -37,7 +37,7 @@ async function createDB(userid) {
         const newDB = new DB({
             userID: `${userid}`,
             db: "a",
-            punishments: {bans: [], mutes: [], kicks: [], warns: []}
+            punishments: {bans: [], mutes: [], kicks: [], notes: []}
         });
         return resolve(newDB);
     });
@@ -111,6 +111,14 @@ async function setTime(time) {
             return resolve(timeMS);
         }
     });
+}
+
+async function getPages(fullArr, pageNum) {
+    let multiNum = pageNum-1;
+    let startNum = multiNum*5;
+    let pages = fullArr.length/5 <= startNum ? fullArr.slice(startNum,startNum+5) : fullArr.slice(0,4);
+    await pages;
+    return pages;
 }
 
 module.exports = { getUser, createDB, getDB, saveDB, getTime, setTime }

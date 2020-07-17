@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = new mongoose.Schema({
     userID: String,
     db: String,
-    punishments: {bans: [Object], mutes: [Object], kicks: [Object], warns: [Object]}
+    punishments: {bans: [Object], mutes: [Object], kicks: [Object], notes: [Object]}
 });
 
 const userID = mongoose.model("userID", Schema);
