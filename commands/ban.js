@@ -25,7 +25,7 @@ module.exports = {
         }
         var member = client.guilds.cache.get('713446315496964176').member(user);
         await args.shift();
-        if (member.user.id !== "671082125650296868" && (member.hasPermission("BAN_MEMBERS") || member.roles.highest.position >= message.member.roles.highest.position)) return message.channel.send(`No. Invalid Situation: ${member.hasPermission("BAN_MEMBERS") ? "" : "`They can ban`"} ${member.roles.highest.position >= message.member.roles.highest.position ? "" : "`Their highest role is higher or equal your highest role.`"}`);
+        if (member.user.id !== "671082125650296868" && (member.hasPermission("BAN_MEMBERS") || member.roles.highest.position >= message.member.roles.highest.position)) return message.channel.send(`No. Invalid Situation: ${!member.hasPermission("BAN_MEMBERS") ? "" : "`They can ban`"} ${!member.roles.highest.position >= message.member.roles.highest.position ? "" : "`Their highest role is higher or equal your highest role.`"}`);
         var time = await setTime(args[0]);
         if (time !== null) await args.shift();
         var reason = args.slice(0).join(' ');
