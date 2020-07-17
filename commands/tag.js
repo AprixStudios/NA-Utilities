@@ -39,12 +39,12 @@ module.exports = {
                 }
                 writeJson(`../tags.json`, tagJson);
 
-                let embed = new MessageEmbed()
+                let embed2 = new MessageEmbed()
                 .setColor("RANDOM")
                 .setTitle(`Tags | ${name}`)
                 .setDescription(`Successfully created the tag with name ${name} and value:\n${value}`)
 
-                message.channel.send(embed);
+                message.channel.send(embed2);
                 break;
             case "delete":
                 let name = args.shift();
@@ -60,12 +60,12 @@ module.exports = {
                 delete tagJson.tags[name.toLowerCase()];
                 writeJson(`../tags.json`, tagJson);
 
-                let embed = new MessageEmbed()
+                let embed3 = new MessageEmbed()
                 .setColor("RANDOM")
                 .setTitle(`Tags | ${name}`)
                 .setDescription(`Successfully deleted the tag with name ${name} and value:\n${value}`)
 
-                message.channel.send(embed);
+                message.channel.send(embed3);
                 break;
             case "modify":
                 let name = args.shift();
@@ -88,12 +88,12 @@ module.exports = {
                         let value = args.join(' ');
                         tagJson.tags[name.toLowerCase()].value = value;
                         writeJson(`../tags.json`);
-                        let embed = new MessageEmbed()
+                        let embed4 = new MessageEmbed()
                         .setColor("RANDOM")
                         .setTitle(`Tags | ${name}`)
                         .setDescription(`Successfully modified the tag with name ${name} and value:\n${value}\nFrom\n${oldValue}`)
 
-                        message.channel.send(embed);
+                        message.channel.send(embed4);
                         break;
                     case "color":
                         let oldValue = tagJson.tags[name.toLowerCase()].color;
@@ -101,16 +101,16 @@ module.exports = {
                         if (!value || value.toLowerCase() === "random" || ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'].some(letter => !value.toLowerCase().indexOf(letter) >= 0) || value.length !== 6) value = "RANDOM";
                         tagJson.tags[name.toLowerCase()].color = value;
                         writeJson(`../tags.json`);
-                        let embed = new MessageEmbed()
+                        let embed5 = new MessageEmbed()
                         .setColor("RANDOM")
                         .setTitle(`Tags | ${name}`)
                         .setDescription(`Successfully modified the tag with name ${name} and color:\n${value}\nFrom\n${oldValue}`)
 
-                        message.channel.send(embed);
+                        message.channel.send(embed5);
                         break;
                     default:
-                        let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nThis isn't a method.`).addField(`Usage`, prefix+this.name+' '+this.usage)
-                        return message.channel.send(embed);
+                        let embed6 = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nThis isn't a method.`).addField(`Usage`, prefix+this.name+' '+this.usage)
+                        return message.channel.send(embed6);
 
                 }
                 break;

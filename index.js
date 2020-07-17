@@ -71,13 +71,13 @@ client.on('message', message => {
             });
         break;
         default:
-            let embed = new MessageEmbed()
+            let embed2 = new MessageEmbed()
             .setColor(tag.color)
             if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${tagName}`)
             embed.setDescription(`${tag.value}`)
 
-            message.channel.send(embed).then(msg => {
-                if (message.mentions.users) msg.edit(`${message.mentions.users.first()}${embed}`);
+            message.channel.send(embed2).then(msg => {
+                if (message.mentions.users) msg.edit(`${message.mentions.users.first()}${embed2}`);
             });
     }
 });
