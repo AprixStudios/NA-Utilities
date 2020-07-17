@@ -56,7 +56,6 @@ client.on('message', message => {
     let {tags} = require('./tags.json');
     let tag = tags[tagName.toLowerCase()];
     if (!tag) return;
-    console.log(tag)
     let embed;
     switch(tagName.toLowerCase()) {
         case "rule":
@@ -68,7 +67,7 @@ client.on('message', message => {
             let ruleTag = tag[rule];
             embed = new Discord.MessageEmbed()
             .setColor(ruleTag.color)
-            if (!args || !args.includes('-c') && !args.includes('-clean') && section !== "-c" && section !== "-clean") embed.setTitle(`${tagName}`)
+            if (!message.content.toLowerCase().endsWith('-c') && !message.content.toLowerCase().endsWith('-clean')) embed.setTitle(`${tagName}`)
             embed.setDescription(`${ruleTag.value}\n    ${ruleTag[section]}`)
 
             message.channel.send(embed).then(msg => {
@@ -79,7 +78,7 @@ client.on('message', message => {
             console.log('is other')
             embed = new Discord.MessageEmbed()
             .setColor(tag.color)
-            if (!args || !args.includes('-c') && !args.includes('-clean')) embed.setTitle(`${tagName}`)
+            if (!message.content.toLowerCase().endsWith('-c') && !message.content.toLowerCase().endsWith('-clean')) embed.setTitle(`${tagName}`)
             embed.setDescription(`${tag.value}`)
 
             message.channel.send(embed).then(msg => {
