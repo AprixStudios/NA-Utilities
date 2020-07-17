@@ -18,6 +18,7 @@ module.exports = {
             return message.channel.send(embed);
         }
         let name;
+        let value;
         switch(doing.toLowerCase()) {
             case "create":
                 name = args.shift();
@@ -29,7 +30,7 @@ module.exports = {
                     let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Sanity Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nThis tag already exist.`).addField(`Usage`, prefix+this.name+' '+this.usage)
                     return message.channel.send(embed);
                 }
-                let value = args.join(' ');
+                value = args.join(' ');
                 if (!value) {
                     let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nValue is not defined.`).addField(`Usage`, prefix+this.name+' '+this.usage)
                     return message.channel.send(embed);
@@ -57,7 +58,7 @@ module.exports = {
                     let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Sanity Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nThis tag doesn't exist.`).addField(`Usage`, prefix+this.name+' '+this.usage)
                     return message.channel.send(embed);
                 }
-                let value = tagJson.tags[name.toLowerCase()].value;
+                value = tagJson.tags[name.toLowerCase()].value;
                 delete tagJson.tags[name.toLowerCase()];
                 writeJson(`../tags.json`, tagJson);
 
@@ -86,7 +87,7 @@ module.exports = {
                 switch(item.toLowerCase()) {
                     case "value":
                         let oldValue = tagJson.tags[name.toLowerCase()].value;
-                        let value = args.join(' ');
+                        value = args.join(' ');
                         tagJson.tags[name.toLowerCase()].value = value;
                         writeJson(`../tags.json`);
                         let embed4 = new MessageEmbed()
@@ -98,7 +99,7 @@ module.exports = {
                         break;
                     case "color":
                         let oldValue = tagJson.tags[name.toLowerCase()].color;
-                        let value = args[0];
+                        value = args[0];
                         if (!value || value.toLowerCase() === "random" || ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'].some(letter => !value.toLowerCase().indexOf(letter) >= 0) || value.length !== 6) value = "RANDOM";
                         tagJson.tags[name.toLowerCase()].color = value;
                         writeJson(`../tags.json`);
