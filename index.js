@@ -68,7 +68,7 @@ client.on('message', message => {
             let ruleTag = tag[rule];
             embed = new Discord.MessageEmbed()
             .setColor(ruleTag.color)
-            if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${tagName}`)
+            if (!args || !args.include('-c') && !args.include('-clean')) embed.setTitle(`${tagName}`)
             embed.setDescription(`${ruleTag.value}\n    ${ruleTag[section]}`)
 
             message.channel.send(embed).then(msg => {
@@ -79,7 +79,7 @@ client.on('message', message => {
             console.log('is other')
             embed = new Discord.MessageEmbed()
             .setColor(tag.color)
-            if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${tagName}`)
+            if (!args || !args.include('-c') && !args.include('-clean')) embed.setTitle(`${tagName}`)
             embed.setDescription(`${tag.value}`)
 
             message.channel.send(embed).then(msg => {
