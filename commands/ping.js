@@ -6,8 +6,8 @@ module.exports = {
         const msg = await message.channel.send("Pinging... ")
         await msg.edit(`
         🏓 Pong! 🏓
-        Ping is \`${client.ws.ping}ms\`
-        Latency is \`${msg.createdTimestamp - message.createdTimestamp}ms\`
+       Ping is \`${client.ws.ping}ms\`
+       Latency is \`${msg.createdTimestamp - message.createdTimestamp}ms\`
         `)
     }
 }
