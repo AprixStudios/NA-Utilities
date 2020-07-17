@@ -4,7 +4,7 @@ const {prefix} = require('../config.json');
 const {writeJson} = require('fs-extra');
 
 module.exports = {
-    name: "Kick",
+    name: "kick",
     description: "Kick a member.",
     usage: "<member> <reason>",
     category: "moderation",
