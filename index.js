@@ -72,7 +72,7 @@ client.on('message', message => {
             embed.setDescription(`${ruleTag.value}\n    ${ruleTag[section]}`)
 
             message.channel.send(embed).then(msg => {
-                if (message.mentions.users) msg.edit(`${message.mentions.users.first()}${embed}`);
+                if (message.mentions.users.first()) msg.edit(`${message.mentions.users.first()}${embed}`);
             });
         break;
         default:
@@ -83,7 +83,7 @@ client.on('message', message => {
             embed.setDescription(`${tag.value}`)
 
             message.channel.send(embed).then(msg => {
-                if (message.mentions.users) msg.edit(`${message.mentions.users.first()}${embed}`);
+                if (message.mentions.users.first()) msg.edit(`${message.mentions.users.first()}${embed}`);
             });
     }
 });
