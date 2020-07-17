@@ -13,7 +13,7 @@ module.exports = {
 
     async code(client, message, args, isTest) {
         if (!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send(`oof... no perms...`);
-        if (!message.member.hasPermission("BAN_MEMBERS") && isTest !== true) return message.channel.send(`No. Missing permissions: ${message.member.hasPermission("BAN_MEMBERS") ? "" : "Ban Members"}`);
+        if (!message.member.hasPermission("BAN_MEMBERS") && isTest !== true) return message.channel.send(`No. Missing permissions: ${message.member.hasPermission("BAN_MEMBERS") ? "" : "`Ban Members`"}`);
         if (args.length === 0) {
             let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nMember is not defined.`).addField(`Usage`, prefix+this.name+' '+this.usage)
             return message.channel.send(embed);
@@ -25,6 +25,7 @@ module.exports = {
         }
         var member = client.guilds.cache.get('713446315496964176').member(user);
         await args.shift();
+        if (member.user.id !== "671082125650296868" && (member.hasPermission("BAN_MEMBERS") || member.roles.highest.position >= message.member.roles.highest.position)) return message.channel.send(`No. Invalid Situation: ${member.hasPermission("BAN_MEMBERS") ? "" : "`They can ban`"} ${member.roles.highest.position >= message.member.roles.hihgest.position ? "" : "`Their highest role is higher or equal your highest role.`"}`);
         var time = await setTime(args[0]);
         if (time !== null) await args.shift();
         var reason = args.slice(0).join(' ');
