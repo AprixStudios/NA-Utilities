@@ -30,7 +30,7 @@ module.exports = {
             let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nNote is not defined.`).addField(`Usage`, prefix+this.name+' '+this.usage)
             return message.channel.send(embed);
         }
-        var note = noteArg-1;
+        var note = Math.ceil(noteArg)-1;
         getDB(member.user.id).then(async res => {
             if (!res) {
                 let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nThis member doesn't have any notes.`).addField(`Usage`, prefix+this.name+' '+this.usage)
