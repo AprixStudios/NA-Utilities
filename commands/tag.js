@@ -41,7 +41,7 @@ module.exports = {
                     value: value,
                     color: "RANDOM"
                 }
-                writeJson(`../tags.json`, tagJson);
+                writeJson(`./tags.json`, tagJson);
 
                 embed = new MessageEmbed()
                 .setColor("RANDOM")
@@ -62,7 +62,7 @@ module.exports = {
                 }
                 value = tagJson.tags[name.toLowerCase()].value;
                 delete tagJson.tags[name.toLowerCase()];
-                writeJson(`../tags.json`, tagJson);
+                writeJson(`./tags.json`, tagJson);
 
                 embed = new MessageEmbed()
                 .setColor("RANDOM")
@@ -91,7 +91,7 @@ module.exports = {
                         oldValue = tagJson.tags[name.toLowerCase()].value;
                         value = args.join(' ');
                         tagJson.tags[name.toLowerCase()].value = value;
-                        writeJson(`../tags.json`, tagJson);
+                        writeJson(`./tags.json`, tagJson);
                         embed = new MessageEmbed()
                         .setColor("RANDOM")
                         .setTitle(`Tags | ${name}`)
@@ -104,7 +104,7 @@ module.exports = {
                         value = args[0];
                         if (!value || value.toLowerCase() === "random" || ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'].some(letter => !value.toLowerCase().indexOf(letter) >= 0) || value.length !== 6) value = "RANDOM";
                         tagJson.tags[name.toLowerCase()].color = value;
-                        writeJson(`../tags.json`, tagJson);
+                        writeJson(`./tags.json`, tagJson);
                         embed = new MessageEmbed()
                         .setColor("RANDOM")
                         .setTitle(`Tags | ${name}`)
