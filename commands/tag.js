@@ -14,7 +14,7 @@ module.exports = {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(`No. Missing permissions: ${message.member.hasPermission("MANAGE_MESSAGES") ? "" : "Manage Messages"}`)
         var doing = args.shift();
         if (!doing) {
-            embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nAction is not defined.`).addField(`Usage`, prefix+this.name+' '+this.usage)
+            let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nAction is not defined.`).addField(`Usage`, prefix+this.name+' '+this.usage)
             return message.channel.send(embed);
         }
         let name;
