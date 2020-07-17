@@ -116,7 +116,7 @@ async function setTime(time) {
 async function getPages(fullArr, pageNum) {
     let multiNum = Math.ceil(pageNum)-1;
     let startNum = multiNum*5;
-    let pages = fullArr.length/5 <= startNum ? fullArr.slice(startNum,startNum+5) : fullArr.slice(0,4);
+    let pages = Math.ceil(fullArr.length/5) <= startNum ? fullArr.slice(startNum,startNum+5) : fullArr.slice(0,4);
     await pages;
     let pagesAmount = Math.ceil(fullArr.length/5);
     let pagesObj = {pages: pages, amount: `${pageNum}/${pagesAmount}`};
