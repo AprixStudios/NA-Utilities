@@ -68,7 +68,7 @@ client.on('message', message => {
             let ruleTag = tag[rule];
             embed = new Discord.MessageEmbed()
             .setColor(ruleTag.color)
-            if (!args || !args.includes('-c') && !args.includes('-clean')) embed.setTitle(`${tagName}`)
+            if (!args || !args.includes('-c') && !args.includes('-clean') && section !== "-c" && section !== "-clean") embed.setTitle(`${tagName}`)
             embed.setDescription(`${ruleTag.value}\n    ${ruleTag[section]}`)
 
             message.channel.send(embed).then(msg => {
