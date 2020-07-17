@@ -40,7 +40,7 @@ module.exports = {
             var items = await getPages(res.punishments.notes,page);
             var notesArr = [];
             for (let item of items.pages) {
-                notesArr.push(`ID: ${res.punishments.notes.find(item)}\nModerator: ${item.modTag}\nNote: ${item.note}`);
+                notesArr.push(`ID: ${res.punishments.notes.indexOf(item)}\nModerator: ${item.modTag}\nNote: ${item.note}`);
             }
 
             let embed = new MessageEmbed()
