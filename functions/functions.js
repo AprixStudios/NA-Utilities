@@ -118,7 +118,17 @@ async function getPages(fullArr, pageNum) {
     let startNum = multiNum*5;
     let pages = fullArr.length/5 <= startNum ? fullArr.slice(startNum,startNum+5) : fullArr.slice(0,4);
     await pages;
-    return pages;
+    let pagesAmount = fullArr.length/5;
+    let pagesObj = {pages: pages, amount: `${pageNum}/${pagesAmount}`};
+    return pagesObj;
 }
 
-module.exports = { getUser, createDB, getDB, saveDB, getTime, setTime }
+async function setCleanTitle(message, embed, title) {
+    if (!message.content.toLowerCase().endsWith(` -c`) && !message.content.toLowerCase().endsWith(` -clean`)) embed.setTitle(title);
+}
+
+async function setCleanFooter(message, embed, footer) {
+    if (!message.content.toLowerCase().endsWith(` -c`) && !message.content.toLowerCase().endsWith(` -clean`)) embed.setFooter(footer);
+}
+
+module.exports = { getUser, createDB, getDB, saveDB, getTime, setTime, getPages, setCleanTitle, setCleanFooter }
