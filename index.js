@@ -51,13 +51,16 @@ client.on('message', message => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
     if (!message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
     let args = message.content.slice(prefix.length).split(/ +/);
+    console.log('in')
     let tagName = args.shift();
     let {tags} = require('./tags.json');
     let tag = tags[tagName.toLowerCase()];
     if (!tag) return;
+    console.log(tag)
     let embed;
     switch(tagName.toLowerCase()) {
         case "rule":
+            console.log('isrule')
             let rule = args.shift();
             if (!rule || !tag[rule]) rule = "1";
             let section = args.shift();
@@ -73,6 +76,7 @@ client.on('message', message => {
             });
         break;
         default:
+            console.log('is other')
             embed = new MessageEmbed()
             .setColor(tag.color)
             if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${tagName}`)
