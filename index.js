@@ -66,7 +66,7 @@ client.on('message', message => {
             let section = args.shift();
             if (!section || !tag[rule][section]) section = "all";
             let ruleTag = tag[rule];
-            embed = new MessageEmbed()
+            embed = new Discord.MessageEmbed()
             .setColor(ruleTag.color)
             if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${tagName}`)
             embed.setDescription(`${ruleTag.value}\n    ${ruleTag[section]}`)
@@ -77,7 +77,7 @@ client.on('message', message => {
         break;
         default:
             console.log('is other')
-            embed = new MessageEmbed()
+            embed = new Discord.MessageEmbed()
             .setColor(tag.color)
             if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${tagName}`)
             embed.setDescription(`${tag.value}`)
