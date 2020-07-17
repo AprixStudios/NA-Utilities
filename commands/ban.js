@@ -69,7 +69,10 @@ module.exports = {
             
                 message.channel.send(embed).catch(err => err);
 
-                if (isTest === false) console.log('would ban')//member.ban(`Banned by ${message.author.tag} (${message.author.id}) for ${reason}`).catch(err => err);
+                let modLogs = message.guild.channels.cache.get(`733346228146012190`);
+                modLogs.send(embed);
+
+                if (isTest === false) member.ban(`Banned by ${message.author.tag} (${message.author.id}) for ${reason}`).catch(err => err);
             });
         });
     }

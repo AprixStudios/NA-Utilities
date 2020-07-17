@@ -47,6 +47,41 @@ client.on('message', message => {
     }
 });
 
+client.on('message', message => {
+    if (!message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
+    let args = message.content.slice(prefix.length).split(/ +/);
+    let tagName = args.shift();
+    let {tags} = require('../tags.json');
+    let tag = tags[tagName.toLowerCase()];
+    if (!tag) return;
+    switch(tagName.toLowerCase()) {
+        case "rule":
+            let rule = args.shift();
+            if (!rule || !tag[rule]) rule = "1";
+            let section = args.shift();
+            if (!section || !tag[rule][section]) section = "all";
+            let ruleTag = tag[rule];
+            let embed = new MessageEmbed()
+            .setColor(ruleTag.color)
+            if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${tagName}`)
+            embed.setDescription(`${ruleTag.value}\n    ${ruleTag[section]}`)
+
+            message.channel.send(embed).then(msg => {
+                if (message.mentions.users) msg.edit(`${message.mentions.users.first()}${embed}`);
+            });
+        break;
+        default:
+            let embed = new MessageEmbed()
+            .setColor(tag.color)
+            if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${tagName}`)
+            embed.setDescription(`${tag.value}`)
+
+            message.channel.send(embed).then(msg => {
+                if (message.mentions.users) msg.edit(`${message.mentions.users.first()}${embed}`);
+            });
+    }
+});
+
 
 client.on('ready', () => {console.log(`Ready!`);});
 
