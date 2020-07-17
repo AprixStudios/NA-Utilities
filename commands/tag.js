@@ -135,7 +135,7 @@ module.exports = {
                 embed.setDescription(`${tag.value}`)
 
                 message.channel.send(embed).then(msg => {
-                    if (message.mentions.users) msg.edit(`${message.mentions.users.first()}${embed}`);
+                    if (message.mentions.users.first()) msg.edit(`${message.mentions.users.first()}${embed}`);
                 });
                 break;
             case "list":
