@@ -51,7 +51,7 @@ client.on('message', message => {
     if (!message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
     let args = message.content.slice(prefix.length).split(/ +/);
     let tagName = args.shift();
-    let {tags} = require('../tags.json');
+    let {tags} = require('./tags.json');
     let tag = tags[tagName.toLowerCase()];
     if (!tag) return;
     let embed;
