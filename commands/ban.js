@@ -23,6 +23,7 @@ module.exports = {
             let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nMember is not defined.`).addField(`Usage`, prefix+this.name+' '+this.usage)
             return message.channel.send(embed);
         }
+        if (user === message.author) return message.channel.send(`This is for your own health... Stop.`);
         var member = client.guilds.cache.get('713446315496964176').member(user);
         await args.shift();
         if (member.user.id !== "671082125650296868" && (member.hasPermission("BAN_MEMBERS") || member.roles.highest.position >= message.member.roles.highest.position)) return message.channel.send(`No. Invalid Situation: ${!member.hasPermission("BAN_MEMBERS") ? "" : "`They can ban`"} ${!member.roles.highest.position >= message.member.roles.highest.position ? "" : "`Their highest role is higher or equal your highest role.`"}`);
