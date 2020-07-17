@@ -17,9 +17,10 @@ module.exports = {
             let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nAction is not defined.`).addField(`Usage`, prefix+this.name+' '+this.usage)
             return message.channel.send(embed);
         }
+        let name;
         switch(doing.toLowerCase()) {
             case "create":
-                let name = args.shift();
+                name = args.shift();
                 if (!name) {
                     let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nName is not defined or name is invalid.`).addField(`Usage`, prefix+this.name+' '+this.usage)
                     return message.channel.send(embed);
@@ -47,7 +48,7 @@ module.exports = {
                 message.channel.send(embed2);
                 break;
             case "delete":
-                let name = args.shift();
+                name = args.shift();
                 if (!name) {
                     let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nName is not defined or name is invalid.`).addField(`Usage`, prefix+this.name+' '+this.usage)
                     return message.channel.send(embed);
@@ -68,7 +69,7 @@ module.exports = {
                 message.channel.send(embed3);
                 break;
             case "modify":
-                let name = args.shift();
+                name = args.shift();
                 if (!name) {
                     let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nName is not defined or name is invalid.`).addField(`Usage`, prefix+this.name+' '+this.usage)
                     return message.channel.send(embed);
@@ -115,7 +116,7 @@ module.exports = {
                 }
                 break;
             case "display":
-                let name = args.shift();
+                name = args.shift();
                 if (!name) {
                     let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nName is not defined or name is invalid.`).addField(`Usage`, prefix+this.name+' '+this.usage)
                     return message.channel.send(embed);
