@@ -48,6 +48,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
     if (!message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
     let args = message.content.slice(prefix.length).split(/ +/);
     let tagName = args.shift();
