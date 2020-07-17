@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client({disableMentions: "all"});
+const client = new Discord.Client({disableMentions: "everyone"});
 const { prefix, token, dbpass, webhookSecret} = require('./config.json');
 const fs = require('fs-extra');
 const mongoose = require('mongoose');
@@ -72,7 +72,7 @@ client.on('message', message => {
             embed.setDescription(`${ruleTag.value}\n    ${ruleTag[section]}`)
 
             message.channel.send(embed).then(msg => {
-                if (message.mentions.users.first()) msg.edit(`${message.mentions.users.first()}${embed}`);
+                if (message.mentions.users.first()) msg.edit(`${message.mentions.users.first()}`);
             });
         break;
         default:
@@ -83,7 +83,7 @@ client.on('message', message => {
             embed.setDescription(`${tag.value}`)
 
             message.channel.send(embed).then(msg => {
-                if (message.mentions.users.first()) msg.edit(`${message.mentions.users.first()}${embed}`);
+                if (message.mentions.users.first()) msg.edit(`${message.mentions.users.first()}`);
             });
     }
 });
