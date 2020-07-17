@@ -54,6 +54,7 @@ client.on('message', message => {
     let {tags} = require('../tags.json');
     let tag = tags[tagName.toLowerCase()];
     if (!tag) return;
+    let embed;
     switch(tagName.toLowerCase()) {
         case "rule":
             let rule = args.shift();
@@ -61,7 +62,7 @@ client.on('message', message => {
             let section = args.shift();
             if (!section || !tag[rule][section]) section = "all";
             let ruleTag = tag[rule];
-            let embed = new MessageEmbed()
+            embed = new MessageEmbed()
             .setColor(ruleTag.color)
             if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${tagName}`)
             embed.setDescription(`${ruleTag.value}\n    ${ruleTag[section]}`)
@@ -71,13 +72,13 @@ client.on('message', message => {
             });
         break;
         default:
-            let embed2 = new MessageEmbed()
+            embed = new MessageEmbed()
             .setColor(tag.color)
             if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${tagName}`)
             embed.setDescription(`${tag.value}`)
 
-            message.channel.send(embed2).then(msg => {
-                if (message.mentions.users) msg.edit(`${message.mentions.users.first()}${embed2}`);
+            message.channel.send(embed).then(msg => {
+                if (message.mentions.users) msg.edit(`${message.mentions.users.first()}${embed}`);
             });
     }
 });
