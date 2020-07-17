@@ -144,6 +144,8 @@ module.exports = {
                 .setColor("RANDOM")
                 .setTitle("Tags")
                 .setDescription(`\`${tags.join('` `')}\``)
+
+                message.channel.send(embed);
                 break;
             default:
                 embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nThis isn't a method.`).addField(`Usage`, prefix+this.name+' '+this.usage)
