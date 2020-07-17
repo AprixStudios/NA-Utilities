@@ -131,7 +131,7 @@ module.exports = {
                 let tag = tagJson.tags[name.toLowerCase()];
                 embed = new MessageEmbed()
                 .setColor(tag.color)
-                if (!args || !args.toLowerCase().include('-c') && !args.toLowerCase().include('-clean')) embed.setTitle(`${name}`)
+                if (!message.content.toLowerCase().endsWith('-c') && !message.content.toLowerCase().endsWith('-clean')) embed.setTitle(`${name}`)
                 embed.setDescription(`${tag.value}`)
 
                 message.channel.send(embed).then(msg => {
