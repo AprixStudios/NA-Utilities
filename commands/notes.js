@@ -46,7 +46,7 @@ module.exports = {
             let embed = new MessageEmbed()
             .setColor("RANDOM")
             setCleanTitle(message,embed,`Notes`);
-            embed.description(notesArr.join(`\n\n`));
+            embed.setDescription(notesArr.join(`\n\n`));
             setCleanFooter(message,embed,`Page: ${items.amount}`);
 
             message.channel.send(embed);
