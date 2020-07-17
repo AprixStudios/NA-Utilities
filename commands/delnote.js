@@ -36,6 +36,10 @@ module.exports = {
                 let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nThis member doesn't have any notes.`).addField(`Usage`, prefix+this.name+' '+this.usage)
                 return message.channel.send(embed);
             }
+            if (!res.punishments.notes.length === 0) {
+                let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nThis member doesn't have any notes.`).addField(`Usage`, prefix+this.name+' '+this.usage)
+                return message.channel.send(embed);
+            }
             if (!res.punishments.notes[note]) {
                 let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\nInvalid note id.`).addField(`Usage`, prefix+this.name+' '+this.usage)
                 return message.channel.send(embed);
