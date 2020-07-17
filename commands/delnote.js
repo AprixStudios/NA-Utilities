@@ -46,7 +46,7 @@ module.exports = {
                 .setColor("RANDOM")
                 .setTitle(`Note Removed`)
                 .addField(`Member`, `${member.user.tag} (${member.user.id})`)
-                .addField(`Note`, `${removedNote.note}`)
+                .addField(`Note`, `${removedNote[0].note}`)
             
                 message.channel.send(embed).catch(err => err);
             });
