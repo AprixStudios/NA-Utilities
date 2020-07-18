@@ -22,6 +22,33 @@ module.exports = {
                     if (message.deleted) return msg.delete();
                     setTimeout(() => {
                         if (message.deleted) return msg.delete();
+                        setTimeout(() => {
+                            if (message.deleted) return msg.delete();
+                            setTimeout(() => {
+                                if (message.deleted) return msg.delete();
+                                setTimeout(() => {
+                                    if (message.deleted) return msg.delete();
+                                    setTimeout(() => {
+                                        if (message.deleted) return msg.delete();
+                                        setTimeout(() => {
+                                            if (message.deleted) return msg.delete();
+                                            setTimeout(() => {
+                                                if (message.deleted) return msg.delete();
+                                                setTimeout(() => {
+                                                    if (message.deleted) return msg.delete();
+                                                    setTimeout(() => {
+                                                        if (message.deleted) return msg.delete();
+                                                        setTimeout(() => {
+                                                            if (message.deleted) return msg.delete();
+                                                        }, 5000);
+                                                    }, 5000);
+                                                }, 5000);
+                                            }, 5000);
+                                        }, 5000);
+                                    }, 5000);
+                                }, 5000);
+                            }, 5000);
+                        }, 5000);
                     }, 5000);
                 }, 5000);
             }, 5000);
