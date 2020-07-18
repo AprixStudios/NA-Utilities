@@ -15,6 +15,16 @@ module.exports = {
             let embed = new MessageEmbed().setColor("RANDOM").setTitle(`Syntax Error\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}`).addField(`Usage`, prefix+this.name+' '+this.usage);
             return message.channel.send(embed);
         }
-        message.channel.send(`${args.join(' ')}`);
+        message.channel.send(`${args.join(' ')}`).then(msg => {
+            setTimeout(() => {
+                if (message.deleted) return msg.delete();
+                setTimeout(() => {
+                    if (message.deleted) return msg.delete();
+                    setTimeout(() => {
+                        if (message.deleted) return msg.delete();
+                    }, 5000);
+                }, 5000);
+            }, 5000);
+        });
     }
 }
