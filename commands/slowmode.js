@@ -18,7 +18,7 @@ module.exports = {
             return message.channel.send(embed);
         }
         if (isNaN(delay)) delay = 0;
-        if (args.length !== 0 && ['-c','-clean'].includes(args[-1].toLowerCase())) args.pop();
+        if (args.length !== 0 && ['-c','-clean'].includes(args[args.length-1].toLowerCase())) args.pop();
         var reason = args.slice(0).join(' ');
 
         let embed = new MessageEmbed()
