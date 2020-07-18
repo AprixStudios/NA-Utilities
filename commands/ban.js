@@ -37,21 +37,21 @@ module.exports = {
         getDB(member.user.id).then(async res => {
             if (!res) res = await createDB(member.id);
             let cases = require('../cases.json');
-            cases.cases++;
+            cases++;
             res.punishments.bans.push({
                 moderator: message.author.id,
                 modTag: message.author.tag,
                 time: time,
                 reason: reason,
                 happenedAt: Date.now(),
-                caseId: cases.cases
+                caseId: cases
             });
             saveDB(res).then(() => {
                 writeJson(`../cases.json`, cases);
 
                 let dmEmbed = new MessageEmbed()
                 .setColor("RANDOM")
-                .setTitle(`You've been banned from ${message.guild.name} #${cases.cases}`)
+                .setTitle(`You've been banned from ${message.guild.name} #${cases}`)
                 .setDescription(`You've been banned from ${message.guild.name}\nHere are some details to help you catch up on what happened.`)
                 .addField(`Moderator`, `${message.author.tag} (${message.author.id})`, true)
                 .addField(`Reason`, `${reason}`, true)
@@ -62,10 +62,10 @@ module.exports = {
 
                 let embed = new MessageEmbed()
                 .setColor("RANDOM")
-                .setTitle(`Member Banned #${cases.cases}`)
-                .addField(`Member`, `${member.user.tag} (${member.user.id})`)
+                .setTitle(`Member Banned #${cases}`)
+                .addField(`Member`, `${member.user.tag} (${member.user.id})`, true)
                 .addField(`Moderator`, `${message.author.tag} (${message.author.id})`, true)
-                .addField(`Reason`, `${reason}`, true)
+                .addField(`Reason`, `${reason}`)
                 .addField(`Temporary?`, `${time === null ? "No" : "Yes"}`)
                 .setFooter(`Expire at: ${time === null ? "Never" : `${new Date(time).toString().slice(0,-40)} | Duration: ${getTime(time)}`}`)
             
@@ -74,7 +74,10 @@ module.exports = {
                 let modLogs = message.guild.channels.cache.get(`733346228146012190`);
                 modLogs.send(embed);
 
-                if (isTest === false) member.ban(`Banned by ${message.author.tag} (${message.author.id}) for ${reason}`).catch(err => err);
+                if (isTest === false) member.ban(`Banned by ${message.author.tag} (${message.author.id}) for ${reason}`).catch(err => {
+                    let errbed = new MessageEmbed().setColor("RANDOM").setTitle(`TypeError/CodeError\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\n${err.message}`).addField(`Usage`, prefix+this.name+' '+this.usage)
+                    return message.channel.send(errbed);
+                });
             });
         });
     }
