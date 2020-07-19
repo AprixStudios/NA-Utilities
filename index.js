@@ -89,6 +89,69 @@ client.on('message', message => {
 });
 
 
-client.on('ready', () => {console.log(`Ready!`);});
+client.once('ready', () => {
+    console.log(`Ready!`);
+    var {getDB,saveDB,getTime} = require('./functions/functions.js');
+    var cases = require('./cases.json');
+    var guild = client.guilds.cache.get('713446315496964176');
+    var modLogs = guild.channels.cache.get('733346228146012190');
+    async function unban() {
+        guild.fetchBans().then(bans => {
+            bans.forEach(ban => {
+                getDB(user.id).then(res => {
+                    if (!res) return;
+                    if (res.punishments.bans.length === 0) return;
+                    if (res.punishments.bans[res.punishments.bans.length-1].time > Date.now()) return;
+                    let banItem = res.punishments.bans[res.punishments.bans.length-1];
+                    cases++;
+                    fs.writeJson(`./cases.json`, cases);
+                    guild.unban(user.id).then(() => {
+                        let embed = Discord.MessageEmbed()
+                        .setColor("RANDOM")
+                        .setTitle(`Member Unbanned #${cases}`)
+                        .addField(`Member`, `${ban.user.tag} (${ban.user.id})`, true)
+                        .addField(`Moderator`, `${banItem.modTag} (${banItem.moderator})`, true)
+                        .addField(`Reason for ban`, `${banItem.reason}`)
+                        .setFooter(`This ban lasted for ${getTime(Date.now()-res.punishments.bans[res.punishments.bans.length-1].happenedAt)}`)
+
+                        modLogs.send(embed).catch(() => {
+                            console.error(error);
+                        });
+                    }).catch(console.error);
+                });
+            });
+        });
+    }
+    async function unmute() {
+        let mutedMembers = guild.members.cache.map(members => members).filter(member => member.roles.cache.has('724549953942323221'));
+        mutedMembers.forEach(member => {
+            getDB(member.user.id).then(res => {
+                if (!res) return;
+                if (res.punishments.mutes.length === 0) return;
+                if (res.punishments.mutes[res.punishments.mutes.length-1].time > Date.now()) return;
+                let muteItem = res.punishments.mutes[res.punishments.mutes.length-1];
+                cases++;
+                fs.writeJson(`./cases.json`, cases);
+                member.roles.remove('724549953942323221').then(() => {
+                    let embed = Discord.MessageEmbed()
+                    .setColor("RANDOM")
+                    .setTitle(`Member Unmuted #${cases}`)
+                    .addField(`Member`, `${member.user.tag} (${member.user.id})`, true)
+                    .addField(`Moderator`, `${muteItem.modTag} (${muteItem.moderator})`, true)
+                    .addField(`Reason for ban`, `${muteItem.reason}`)
+                    .setFooter(`This ban lasted for ${getTime(Date.now()-res.punishments.mutes[res.punishments.mutes.length-1].happenedAt)}`)
+
+                    modLogs.send(embed).catch(() => {
+                        console.error(error);
+                    });
+                }).catch(console.error);
+            });
+        });
+    }
+    setInterval(() => {
+        unban().catch(console.error);
+        unmute().catch(console.error);
+    }, 60000);
+});
 
 client.login(token);
