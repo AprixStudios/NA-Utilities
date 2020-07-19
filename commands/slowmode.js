@@ -29,7 +29,7 @@ module.exports = {
 
         message.channel.setRateLimitPerUser(delay, `Moderator: ${message.author.tag} (${message.author.id}) | Reason: ${reason ? reason : "No Reason"}`).then(() => {
             message.channel.send(embed);
-            if (args[0] && args[0].toLowerCase() !== '-nolog') {
+            if (!args[0] || args[0].toLowerCase() !== '-nolog') {
                 let modLogs = message.guild.channels.cache.get(`733346228146012190`);
                 modLogs.send(embed);
             }
