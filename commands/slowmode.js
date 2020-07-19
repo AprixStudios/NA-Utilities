@@ -25,10 +25,14 @@ module.exports = {
         let embed = new MessageEmbed()
         .setColor("RANDOM")
         setCleanTitle(message,embed,`Slowmode`);
-        embed.setDescription(`Slowmode has now been ${delay !== 0 ? `set to ${delay}` : `been turned off`} by ${message.author.tag}${reason ? `\nWith reason: ${reason}` : `\nWithout a set reason.`}`);
+        embed.setDescription(`Slowmode for ${message.channel} has now been ${delay !== 0 ? `set to ${delay}` : `been turned off`} by ${message.author.tag}${reason ? `\nWith reason: ${reason}` : `\nWithout a set reason.`}`);
 
         message.channel.setRateLimitPerUser(delay, `Moderator: ${message.author.tag} (${message.author.id}) | Reason: ${reason ? reason : "No Reason"}`).then(() => {
             message.channel.send(embed);
+            if (args[0] && args[0].toLowerCase() !== '-nolog') {
+                let modLogs = message.guild.channels.cache.get(`733346228146012190`);
+                modLogs.send(embed);
+            }
         }).catch(err => {
             let errbed = new MessageEmbed().setColor("RANDOM").setTitle(`TypeError/CodeError\n${this.name.slice(0,1).toUpperCase()+this.name.slice(1)}`).setDescription(`${this.description}\n\n${err.message}`).addField(`Usage`, prefix+this.name+' '+this.usage)
             return message.channel.send(errbed);
